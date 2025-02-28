@@ -1,0 +1,19 @@
+# Start from the offical Python 3.9 base image.
+# This will include all the basic components we need.
+FROM python:3.9
+
+# Within the container, we'll work in this directory.
+WORKDIR /code
+
+# Copy our requirements.txt file into the container.
+COPY ./requirements.txt requirements.txt
+
+# Install our requirements within the container.
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
+# Copy our source code directory into the container.
+COPY ./app app
+
+# Specify the command to run when the container is started.
+# In this case, start our FastAPI server on port 80.
+CMD ["fastapi", "run", "app/main.py", "--port", "80"]
