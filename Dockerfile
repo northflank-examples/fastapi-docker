@@ -14,6 +14,9 @@ RUN pip install --no-cache-dir --upgrade -r requirements.txt
 # Copy our source code directory into the container.
 COPY ./app app
 
+# Expose port 80 within our container to the outside world.
+EXPOSE 80
+
 # Specify the command to run when the container is started.
 # In this case, start our FastAPI server on port 80.
 CMD ["fastapi", "run", "app/main.py", "--port", "80"]
